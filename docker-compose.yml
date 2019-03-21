@@ -7,7 +7,7 @@ services:
            source: ./wordpress
            target: /var/www/html
          - type: bind
-           source: ./php.ini
+           source: ./php-fpm/php.ini
            target: /usr/local/etc/php/conf.d/opcache-recommended.ini
       environment:
          - WORDPRESS_DB_HOST=mysql
