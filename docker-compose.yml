@@ -37,4 +37,3 @@ services:
         - MYSQL_USER=myuser
         - MYSQL_PASSWORD=secret
         - MYSQL_ROOT_PASSWORD=docker
--- INSERT --                                                                                                        39,15         Bot
