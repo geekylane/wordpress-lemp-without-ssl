@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  wordpress:
+      image: wordpress:5.1.1-php7.3-fpm
+      volumes:
+         - type: bind
+           source: ./wordpress
+           target: /var/www/html
+         - type: bind
+           source: ./php.ini
+           target: /usr/local/etc/php/conf.d/opcache-recommended.ini
+      environment:
+         - WORDPRESS_DB_HOST=mysql
+         - WORDPRESS_DB_USER=myuser
+         - WORDPRESS_DB_PASSWORD=secret
+         - WORDPRESS_DB_NAME=mydb
+      expose:
+         - "9000"
+  nginx:
+      image: nginx
+      volumes:
+        - type: bind
+          source: ./wordpress
+          target: /var/www/html
+        - type: bind
+          source: ./nginx/default.conf
+          target: /etc/nginx/conf.d/default.conf
+        - type: bind
+          source: ./nginx/nginx.conf
+          target: /etc/nginx/nginx.conf
+      ports:
+        - "80:80"
+  mysql:
+      image: mariadb
+      environment:
+        - MYSQL_DATABASE=mydb
+        - MYSQL_USER=myuser
+        - MYSQL_PASSWORD=secret
+        - MYSQL_ROOT_PASSWORD=docker
+-- INSERT --                                                                                                        39,15         Bot
