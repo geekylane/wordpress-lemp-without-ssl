@@ -14,6 +14,7 @@ services:
          - WORDPRESS_DB_USER=myuser
          - WORDPRESS_DB_PASSWORD=secret
          - WORDPRESS_DB_NAME=mydb
+         - WORDPRESS_CONFIG_EXTRA= define('FS_METHOD','direct');
       expose:
          - "9000"
   nginx:
